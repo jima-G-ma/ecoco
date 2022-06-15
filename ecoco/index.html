@@ -151,7 +151,29 @@
                 <div class="resume-section-content">
                     <h2 class="mb-5">画像検索</h2>
                     <h3 class="mb-0">画像検索で調べることもできます。</h3>
-                         <div>ものの名前が分からない場合には利用してみて下さい。</div>
+                         <div class="mb-5">
+                            ものの名前が分からない場合には利用してみて下さい。
+                        </div>
+                        <div>
+                            <h3 class="mb-3">WEBカメラの映像を表示</h3>
+                            <div>
+                                <p>カメラを使用することを許可すると映像が表示されます。</p>
+                                <video id="video"></video>
+                            </div>
+                        </div>  
+                        <script>
+                            const video = document.getElementById("video")
+                            navigator.mediaDevices.getUserMedia({
+                                video: true,
+                                audio: false,
+                            }).then(stream => {
+                                video.srcObject = stream;
+                                video.play()
+                            }).catch(e => {
+                              console.log(e)
+                            })
+                        </script>  
+
                 </div>
             </section>
             <hr class="m-0" />
