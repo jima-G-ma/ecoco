@@ -9,14 +9,11 @@
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <script src="js/calendar.js" type="text/javascript"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        <!--カレンダーのcss-->
-        <link rel="stylesheet" href="css/calendar.css" type="text/css">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -67,19 +64,65 @@
                                 <span class="text-danger">燃えるゴミ</span>
                             </h3>
                             <!--以下はカレンダーを表す-->
-                            <div class="wrapper">
-                                <!--xxxx年xx月を表示-->
-                                <h1 id="header"></h1>
-
-                                <!--ボタンクリックで月移動-->
-                                <div id="next-prev-button">
-                                    <button id="prev" onclick="prev()"><</button>
-                                    <button id="next" onclick="next()">></button>
-                                </div>
-
-                                <!--カレンダー-->
-                                <div id="calendar2"></div>
-                            </div>
+                            <table border="0" cellpadding="2" cellspacing="1" bgcolor="#333333" width="90%">
+                                <tr align="center" bgcolor="#FFFFFF">
+                                <td colspan="7">2022年6月</td>
+                                </tr>
+                                <tr align="center" bgcolor="#E6D7C9">
+                                <td>日</td>
+                                <td>月</td>
+                                <td>火</td>
+                                <td>水</td>
+                                <td>木</td>
+                                <td>金</td>
+                                <td>土</td>
+                                </tr>
+                                <tr align="center" bgcolor="#FFFFFF">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td bgcolor="#FF6666">1</td>
+                                <td>2</td>
+                                <td bgcolor="#FF6666">3</td>
+                                <td>4</td>
+                                </tr>
+                                <tr align="center" bgcolor="#FFFFFF">
+                                <td>5</td>
+                                <td bgcolor="#FF6666">6</td>
+                                <td>7</td>
+                                <td bgcolor="#FF6666">8</td>
+                                <td>9</td>
+                                <td bgcolor="#FF6666">10</td>
+                                <td>11</td>
+                                </tr>
+                                <tr align="center" bgcolor="#FFFFFF">
+                                <td>12</td>
+                                <td bgcolor="#FF6666">13</td>
+                                <td>14</td>
+                                <td bgcolor="#FF6666">15</td>
+                                <td>16</td>
+                                <td bgcolor="#FF6666">17</td>
+                                <td>18</td>
+                                </tr>
+                                <tr align="center" bgcolor="#FFFFFF">
+                                <td>19</td>
+                                <td bgcolor="#FF6666">20</td>
+                                <td>21</td>
+                                <td bgcolor="#FF6666">22</td>
+                                <td>23</td>
+                                <td bgcolor="#FF6666">24</td>
+                                <td>25</td>
+                                </tr>
+                                <tr align="center" bgcolor="#FFFFFF">
+                                <td>26</td>
+                                <td bgcolor="#FF6666">27</td>
+                                <td>28</td>
+                                <td bgcolor="#FF6666">29</td>
+                                <td>30</td>
+                                <td></td>
+                                <td></td>
+                                </tr>
+                                </table>
                                 <div class="mt-3">
                                     <font color="#FF6666">■</font>が燃えるごみの日です。
                                 </div>
