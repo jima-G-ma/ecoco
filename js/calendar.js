@@ -6,6 +6,18 @@ var showDate = new Date(today.getFullYear(), today.getMonth(), 1);
 // 初期表示
 window.onload = function () {
   showProcess(today, calendar2);
+  //今日の日付を表示
+  var now = new Date();
+  document.getElementById("month").innerHTML = showmonth();
+  function showmonth() {
+      var month = now.getMonth();
+      return month + 1;
+  }
+  document.getElementById("date").innerHTML = showday();
+  function showday() {
+      var day = now.getDate();
+      return day;
+  }    
 };
 // 前の月表示
 function prev() {
