@@ -12,12 +12,16 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!--検索フォームの虫眼鏡マークの追加-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <!--カレンダーのcss-->
         <link rel="stylesheet" href="css/calendar.css" type="text/css">
         <!--カレンダーのjavascript-->
         <script src="js/calendar.js" type="text/javascript"></script>
+        <!--検索フォームのcss-->
+        <link rel="stylesheet" href="css/serchform.css" type="text/css">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -52,6 +56,12 @@
                         宇部市のごみの捨て方が分からないという方向けのサービスになっています。
                         
                     </p>
+                    <!--検索フォーム-->
+                    <form id="form2" action="自分のサイトURL" method="get">
+                        <input id="sbox2"  id="s" name="s" type="text" placeholder="キーワードを入力"/>
+                        <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
+                    </form>
+                    
                     <div class="social-icons">
                         <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
