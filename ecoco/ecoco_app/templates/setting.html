@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div>
+  <h1 class="m-5">設定</h1>
+</div>
+<div class="container">
+   <!--ゴミ出しの日を通知するかどうか-->
+   <li>通知</li>
+   <div class="switchArea">
+       <input type="checkbox" id="switch1">
+       <label for="switch1"><span></span></label>
+       <div id="swImg"></div>
+   </div>
+
+   <!--宇部市内の地域を選択-->
+   <li>地域設定</li>
+   <select name="">
+       <option value="">東岐波</option>
+       <option value="">常盤</option>
+       <option value="">岬</option>
+       <option value="">神原</option>
+       <option value="">上宇部</option>
+       <option value="">小羽山</option>
+       <option value="">鵜の島</option>
+       <option value="">西宇部</option>
+       <option value="">厚南</option>
+       <option value="">厚東</option>
+       <option value="">小野</option>
+       <option value="">万倉</option>
+       <option value="">西岐波</option>
+       <option value="">恩田</option>
+       <option value="">見初</option>
+       <option value="">琴芝</option>
+       <option value="">川上</option>
+       <option value="">新川</option>
+       <option value="">藤山</option>
+       <option value="">黒石</option>
+       <option value="">原</option>
+       <option value="">二俣瀬</option>
+       <option value="">舟木</option>
+       <option value="">吉部</option>
+   </select>
+
+</div>
+{% endblock %}
