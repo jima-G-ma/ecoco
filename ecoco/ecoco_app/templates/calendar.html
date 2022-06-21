@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block main %}
+<!--カレンダー-->
+<div>
+  <h1 class="m-5">カレンダー</h1>
+</div>
+<div class="container">
+  <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+    <div class="flex-grow-1">        
+      <h2>
+        今日は{% now "Y年m月d日" %}<span class="text-danger">燃えるゴミ</span>の日です
+      </h2>
+      
+      <!--以下はカレンダーを表す-->
+      <div class="wrapper">
+        <!--xxxx年xx月を表示-->
+        <h1 id="header"></h1>
+        <h3>宇部市</h3>
+
+        <!--ボタンクリックで月移動-->
+        <div id="next-prev-button">
+          <button id="prev" onclick="prev()">
+            < </button>
+              <button id="next" onclick="next()">></button>
+        </div>
+
+        <!--カレンダー-->
+        <div id="calendar2"></div>
+      </div>
+      <div class="mt-3">
+        <font color="#FF6666">■</font>が燃えるごみの日です。
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
