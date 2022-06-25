@@ -7,163 +7,22 @@
     <section class="resume-section" id="about">
         <div class="resume-section-content">
             <h1 class="mb-0">
-                ecoco
-                <span class="text-success">宇部市ごみ捨てガイド</span>
+                宇部市ごみ捨てガイド
+                <span class="text-success">ecoco</span>
             </h1>
 
             <p class="lead mb-5">
                 宇部市のごみの捨て方が分からないという方向けのサービスになっています。
-
             </p>
-            <!--検索フォーム-->
-            <form id="form2" action="自分のサイトURL" method="get">
-                <input id="sbox2" id="s" name="s" type="text" placeholder="キーワードを入力" />
-                <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
-            </form>
 
+            <div style="font-size: 30px;">
+                <p><a href="/calendar">カレンダーページへ</a></p>
+                <p><a href="/separation">分別ページへ</a></p>
+                <p><a href="/search">画像検索ページへ</a></p>
+                <p><a href="/place">ゴミ捨て場所ページへ</a></p>
+                <p><a href="/setting">設定ページへ</a></p>
+            </div>
+            
         </div>
     </section>
-    <hr class="m-0" />
-    <!--カレンダー-->
-    <a href="/calendar">カレンダーページへ</a>
-    <section class="resume-section" id="calendar">
-        <div class="resume-section-content">
-            <h2 class="mb-5">カレンダー</h2>
-            <h3>今日は<span id="month"></span>月<span id="date"></span>日です。</h3>
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="flex-grow-1">
-                    <h3 class="mb-3">宇部市
-                        <span class="text-danger">燃えるゴミ</span>
-                    </h3>
-                    <!--以下はカレンダーを表す-->
-                    <div class="wrapper">
-                        <!--xxxx年xx月を表示-->
-                        <h1 id="header"></h1>
-
-                        <!--ボタンクリックで月移動-->
-                        <div id="next-prev-button">
-                            <button id="prev" onclick="prev()">
-                                < </button>
-                                    <button id="next" onclick="next()">></button>
-                        </div>
-
-                        <!--カレンダー-->
-                        <div id="calendar2"></div>
-                    </div>
-                    <div class="mt-3">
-                        <font color="#FF6666">■</font>が燃えるごみの日です。
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <hr class="m-0" />
-
-    <!-- 分別 -->
-    <a href="/separation">分別ページへ</a>
-    <section class="resume-section" id="separation">
-        <div class="resume-section-content">
-            <h2 class="mb-5">分別</h2>
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="flex-grow-1">
-                    <h3 class="mb-0">分別方法の調べ方</h3>
-                    <div>分別方法を知りたいものの名前で検索したら表示されます。</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <hr class="m-0" />
-
-    <!-- 画像検索 -->
-    <a href="/search">画像検索ページへ</a>
-    <section class="resume-section" id="search">
-        <div class="resume-section-content">
-            <h2 class="mb-5">画像検索</h2>
-            <h3 class="mb-0">画像検索で調べることもできます。</h3>
-            <div class="mb-5">
-                ものの名前が分からない場合には利用してみて下さい。
-            </div>
-            <div>
-                <h3 class="mb-3">WEBカメラの映像を表示</h3>
-                <div>
-                    <p>カメラを使用することを許可すると映像が表示されます。</p>
-                    <video id="video"></video>
-                </div>
-            </div>
-            <script>
-                const video = document.getElementById("video")
-                navigator.mediaDevices.getUserMedia({
-                    video: true,
-                    audio: false,
-                }).then(stream => {
-                    video.srcObject = stream;
-                    video.play()
-                }).catch(e => {
-                    console.log(e)
-                })
-            </script>
-
-        </div>
-    </section>
-    <hr class="m-0" />
-    <!-- ゴミ捨て場所-->
-    <a href="/place">ゴミ捨て場所ページへ</a>
-    <section class="resume-section" id="place">
-        <div class="resume-section-content">
-            <h2 class="mb-5">ゴミ捨て場所</h2>
-            <div>大型ゴミ等を捨てる場所を調べることができます。
-            </div>
-        </div>
-    </section>
-
-    <hr class="m-0" />
-    <!-- 設定-->
-    <a href="/setting">設定ページへ</a>
-    <section class="resume-section" id="setting">
-        <div class="resume-section-content">
-            <h2 class="mb-5">設定</h2>
-            <!--ゴミ出しの日を通知するかどうか-->
-            <li>通知</li>
-            <div class="switchArea">
-                <input type="checkbox" id="switch1">
-                <label for="switch1"><span></span></label>
-                <div id="swImg"></div>
-            </div>
-
-   <!--宇部市内の地域を選択-->
-   <li>地域設定</li>
-   <p>地域： <span id="selectedarea"></span></p>
-    
-   <form name="form">
-      <select name="area">
-        <option value="none">選択してください</option>
-        <option value="東岐波">東岐波</option>
-        <option value="常盤">常盤</option>
-        <option value="岬">岬</option>
-        <option value="神原">神原</option>
-        <option value="上宇部">上宇部</option>
-        <option value="小羽山">小羽山</option>
-        <option value="鵜の島">鵜の島</option>
-        <option value="西宇部">西宇部</option>
-        <option value="厚南">厚南</option>
-        <option value="厚東">厚東</option>
-        <option value="小野">小野</option>
-        <option value="万倉">万倉</option>
-        <option value="西岐波">西岐波</option>
-        <option value="恩田">恩田</option>
-        <option value="見初">見初</option>
-        <option value="琴芝">琴芝</option>
-        <option value="川上">川上</option>
-        <option value="新川">新川</option>
-        <option value="藤山">藤山</option>
-        <option value="黒石">黒石</option>
-        <option value="原">原</option>
-        <option value="二俣瀬">二俣瀬</option>
-        <option value="舟木">舟木</option>
-        <option value="吉部">吉部</option>
-      </select>
-    </form>
-
-<input type="button" value="決定" onclick="clickBtn()"/>
-</div>
 {% endblock %}

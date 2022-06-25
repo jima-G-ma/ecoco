@@ -9,10 +9,13 @@
   <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
     <div class="flex-grow-1">        
       <h2>
-        今日は{% now "Y年m月d日" %}<span class="text-danger">燃えるゴミ</span>の日です
+        今日は{% now "Y年m月d日" %}
       </h2>
-      
-      <!--以下はカレンダーを表す-->
+      <h3>
+        <span class="text-danger">燃えるゴミ</span>の日です
+      </h3>
+          
+     <!--以下はカレンダーを表す-->
       <div class="wrapper">
         <!--xxxx年xx月を表示-->
         <h1 id="header"></h1>
@@ -20,9 +23,8 @@
 
         <!--ボタンクリックで月移動-->
         <div id="next-prev-button">
-          <button id="prev" onclick="prev()">
-            < </button>
-              <button id="next" onclick="next()">></button>
+          <button id="prev" onclick="prev()"><</button>
+          <button id="next" onclick="next()">></button>
         </div>
 
         <!--カレンダー-->
