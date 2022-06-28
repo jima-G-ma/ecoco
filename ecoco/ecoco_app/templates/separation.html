@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block main %}
 <div>
   <h1 class="m-5">分別</h1>
@@ -14,6 +16,28 @@
         <input id="sbox2" id="s" name="s" type="text" placeholder="キーワードを入力" />
         <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
       </form>
+  </div>
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ごみの種類</th>
+          <th scope="col">名前</th>
+          <th scope="col">メモ</th>
+          <!-- <th scope="col">ふりがな</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in item %}
+        <tr>
+          <th scope="rowgroup" class="w-50">{{ i.label }}</th>
+          <td class="w-25">{{ i.name }}</td>
+          <td class="w-auto">{{ i.notice }}</td>
+          <!-- <td class="w-25">{{ i.furigana }}</td> -->
+        </tr>
+        {% endfor %}  
+      </tbody>
+    </table>
   </div>
 </div>
 {% endblock %}
