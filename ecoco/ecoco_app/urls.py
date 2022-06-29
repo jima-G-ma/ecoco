@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . views import IndexView, CalendarView, SearchView, PlaceView, SettingView
+from . views import IndexView, CalendarView, SearchView, PlaceView
 from . views import bunbetsu
 
 urlpatterns = [
@@ -9,5 +9,4 @@ urlpatterns = [
     path('separation/', bunbetsu),
     path('search/', SearchView.as_view()),
     path('place/', PlaceView.as_view()),
-    path('setting/', SettingView.as_view()),
 ]
