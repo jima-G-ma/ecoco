@@ -2,6 +2,16 @@
 
 {% load static %}
 
+{% block head %}
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/jquery.quicksearch.min.js' %}"></script>
+<script>
+  $(function () {
+    $('input#id_search').quicksearch('table tbody tr');
+  });
+</script>
+{% endblock %}
+
 {% block main %}
 <div>
   <h1 class="m-5">分別</h1>
@@ -11,33 +21,34 @@
   <div class="flex-grow-1">
     <h3 class="mb-0">分別方法の調べ方</h3>
     <div>分別方法を知りたいものの名前で検索したら表示されます。</div>
-    <!--検索フォーム-->
-      <form id="form2" action="自分のサイトURL" method="get">
-        <input id="sbox2" id="s" name="s" type="text" placeholder="キーワードを入力" />
-        <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
-      </form>
   </div>
-  <div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">ごみの種類</th>
-          <th scope="col">名前</th>
-          <th scope="col">メモ</th>
-          <!-- <th scope="col">ふりがな</th> -->
-        </tr>
-      </thead>
-      <tbody>
-        {% for i in item %}
-        <tr>
-          <th scope="rowgroup" class="w-50">{{ i.label }}</th>
-          <td class="w-25">{{ i.name }}</td>
-          <td class="w-auto">{{ i.notice }}</td>
-          <!-- <td class="w-25">{{ i.furigana }}</td> -->
-        </tr>
-        {% endfor %}  
-      </tbody>
-    </table>
-  </div>
+  <!--検索フォーム-->
+  <form id="form2" action="#">
+    <input id="id_search" name="search" type="text" placeholder="キーワードを入力" />
+    <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
+  </form>
+
+  <table class="table table-striped">
+    <thead class="sticky-top bg-white">
+      <tr>
+        <th scope="col" style="width: 25%">種類</th>
+        <th scope="col" style="width: 25%">名前</th>
+        <th scope="col" style="width: 50%">メモ</th>
+        <!-- <th scope="col">ふりがな</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in item %}
+      <tr class="displaynone">
+        <th scope="rowgroup" class="w-50"><span class="highlight">{{ i.label }}</span></th>
+        <td class="w-25">{{ i.name }}</td>
+        <td class="w-auto">{{ i.notice }}</td>
+
+        <!-- <td class="w-25">{{ i.furigana }}</td> -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
+
 {% endblock %}
