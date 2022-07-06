@@ -3,21 +3,21 @@ const today = new Date();
 // 月末だとずれる可能性があるため、1日固定で取得
 var showDate = new Date(today.getFullYear(), today.getMonth(), 1);
 
+function showmonth() {
+  var month = now.getMonth();
+  return month + 1;
+}
+function showday() {
+  var day = now.getDate();
+  return day;
+}
 // 初期表示
 window.onload = function () {
   showProcess(today, calendar2);
   //今日の日付を表示
   var now = new Date();
-  document.getElementById("month").innerHTML = showmonth();
-  function showmonth() {
-      var month = now.getMonth();
-      return month + 1;
-  }
-  document.getElementById("date").innerHTML = showday();
-  function showday() {
-      var day = now.getDate();
-      return day;
-  }    
+  // document.getElementById("month").innerHTML = showmonth();
+  // document.getElementById("date").innerHTML = showday();
 };
 // 前の月表示
 function prev() {
@@ -38,6 +38,7 @@ function showProcess(date) {
   document.querySelector('#header').innerHTML = year + "年 " + (month + 1) + "月";
 
   var calendar2 = createProcess(year, month);
+  console.log(date);
   document.querySelector('#calendar2').innerHTML = calendar2;
 }
 
@@ -51,6 +52,7 @@ function createProcess(year, month) {
   calendar2 += "</tr>";
 
   var count = 0;
+  var count2 = 0;
   var startDayOfWeek = new Date(year, month, 1).getDay();
   var endDate = new Date(year, month + 1, 0).getDate();
   var lastMonthEndDate = new Date(year, month, 0).getDate();
@@ -70,21 +72,32 @@ function createProcess(year, month) {
         calendar2 += "<td class='disabled'>" + (count - endDate) + "</td>";
       } else {
         // 当月の日付を曜日に照らし合わせて設定
+        // カレンダーの数字部分を設定
         count++;
-        if (year == today.getFullYear()
-          && month == (today.getMonth())
-          && count == today.getDate()
-          && (week[j] == "月" || week[j] == "水" || week[j] == "金")) {
-          calendar2 += "<td class='today burning'>" + count + "</td>";
-        } else if (year == today.getFullYear()
-          && month == (today.getMonth())
-          && count == today.getDate()) {
+        var judgeToday = count == today.getDate();
+        var judgeMonth = month == today.getMonth();
+        var judgeYear = year == today.getFullYear();
+        if (judgeToday && judgeMonth && judgeYear) {
           calendar2 += "<td class='today'>" + count + "</td>";
-        } else if(week[j] == "月" || week[j] == "水" || week[j] == "金") {
-          calendar2 += "<td class='burning'>" + count + "</td>";
         } else {
           calendar2 += "<td>" + count + "</td>";
         }
+      }
+    }
+    calendar2 += "</tr>";
+
+    //燃える日などの情報追加
+    calendar2 += "<tr>";
+    for (var k = 0; k < week.length; k++) {
+      var moeruDay = (week[k] == "月" || week[k] == "水" || week[k] == "金");
+      if(i == 0 && k < startDayOfWeek || count >= endDate){
+        calendar2 += "<td>" + " " + "</td>";
+      }else if(moeruDay){
+        count2++;
+        calendar2 += "<td class='burning'>" + "燃えるゴミ" + count2 + "</td>";
+      }else{
+        count2++;
+        calendar2 += "<td>" + " " + "</td>";
       }
     }
     calendar2 += "</tr>";
