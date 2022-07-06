@@ -11,4 +11,11 @@ function clickBtn(){
 	//const str = document.form1.color1.options[num].value;
 
 	document.getElementById("selectedarea").textContent = str; 
+
+	
+
+
+	//カレンダー変更
+	chnageDistrict();
 }
+

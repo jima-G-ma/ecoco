@@ -23,32 +23,31 @@
 
       <p>地域： <span id="selectedarea"></span></p>
       <form name="form">
-        <select name="area">
-          <option value="none">選択してください</option>
-          <option value="東岐波" onselect="higasiokinami()">東岐波</option>
-          <option value="常盤" onselect="tokiwa()">常盤</option>
-          <option value="岬" onselect="misaki()">岬</option>
-          <option value="神原" onselect="kanbara()">神原</option>
-          <option value="上宇部" onselect="kamiube()">上宇部</option>
-          <option value="小羽山" onselect="obayama()">小羽山</option>
-          <option value="鵜の島" onselect="unosima()">鵜の島</option>
-          <option value="西宇部" onselect="nisiube()">西宇部</option>
-          <option value="厚南" onselect="kounann()">厚南</option>
-          <option value="厚東" onselect="kotou()">厚東</option>
-          <option value="小野" onselect="ono()">小野</option>
-          <option value="万倉" onselect="magura()">万倉</option>
-          <option value="西岐波" onselect="nisiokinami()">西岐波</option>
-          <option value="恩田" onselect="onda()">恩田</option>
-          <option value="見初" onselect="mizome()">見初</option>
-          <option value="琴芝" onselect="ktoshiba()">琴芝</option>
-          <option value="川上" onselect="kawakami()">川上</option>
-          <option value="新川" onselect="shinkawa()">新川</option>
-          <option value="藤山" onselect="huziyama()">藤山</option>
-          <option value="黒石" onselect="kuroishi()">黒石</option>
-          <option value="原" onselect="hara()">原</option>
-          <option value="二俣瀬" onselect="hutamatase()">二俣瀬</option>
-          <option value="舟木" onselect="hunaki()">舟木</option>
-          <option value="吉部" onselect="kibekami()">吉部</option>
+        <select name="area" onchange="clickBtn()">
+          <option value="東岐波" selected>東岐波</option>
+          <option value="常盤">常盤</option>
+          <option value="岬">岬</option>
+          <option value="神原">神原</option>
+          <option value="上宇部">上宇部</option>
+          <option value="小羽山">小羽山</option>
+          <option value="鵜の島">鵜の島</option>
+          <option value="西宇部">西宇部</option>
+          <option value="厚南">厚南</option>
+          <option value="厚東">厚東</option>
+          <option value="小野">小野</option>
+          <option value="万倉">万倉</option>
+          <option value="西岐波">西岐波</option>
+          <option value="恩田">恩田</option>
+          <option value="見初">見初</option>
+          <option value="琴芝">琴芝</option>
+          <option value="川上">川上</option>
+          <option value="新川">新川</option>
+          <option value="藤山">藤山</option>
+          <option value="黒石">黒石</option>
+          <option value="原">原</option>
+          <option value="二俣瀬">二俣瀬</option>
+          <option value="舟木">舟木</option>
+          <option value="吉部">吉部</option>
         </select>
       </form>
       <input class="mt-3" type="button" value="決定" onclick="clickBtn()"/>

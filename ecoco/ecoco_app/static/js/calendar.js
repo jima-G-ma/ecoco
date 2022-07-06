@@ -31,6 +31,11 @@ function next() {
   showProcess(showDate);
 }
 
+//地区変更時
+function chnageDistrict() {
+  showProcess(showDate);
+}
+
 // カレンダー表示
 function showProcess(date) {
   var year = date.getFullYear();
@@ -38,7 +43,6 @@ function showProcess(date) {
   document.querySelector('#header').innerHTML = year + "年 " + (month + 1) + "月";
 
   var calendar2 = createProcess(year, month);
-  console.log(date);
   document.querySelector('#calendar2').innerHTML = calendar2;
 }
 
@@ -51,8 +55,12 @@ function createProcess(year, month) {
   }
   calendar2 += "</tr>";
 
+  //地区の取得
+  const area = document.form.area;
+  const num = area.selectedIndex;
+  const tiku = area.options[num].value;
+
   var count = 0;
-  var count2 = 0;
   var startDayOfWeek = new Date(year, month, 1).getDay();
   var endDate = new Date(year, month + 1, 0).getDate();
   var lastMonthEndDate = new Date(year, month, 0).getDate();
@@ -90,13 +98,20 @@ function createProcess(year, month) {
     calendar2 += "<tr>";
     for (var k = 0; k < week.length; k++) {
       var moeruDay = (week[k] == "月" || week[k] == "水" || week[k] == "金");
+      var plaDay
+      if(tiku == "東岐波"||tiku == "西岐波"||tiku == "常盤"||tiku == "恩田"||tiku == "岬"||
+      tiku == "初見"||tiku == "上宇部"||tiku == "神原"||tiku == "琴芝"||tiku == "川上"){
+        plaDay = (week[k] == "木");
+      }else{
+        plaDay = (week[k] == "火");
+      }
       if(i == 0 && k < startDayOfWeek || count >= endDate){
         calendar2 += "<td>" + " " + "</td>";
       }else if(moeruDay){
-        count2++;
         calendar2 += "<td class='burning'>" + "燃えるゴミ" + "</td>";
+      }else if(plaDay){
+        calendar2 += "<td class='blueing'>" + "プラゴミ" + "</td>";
       }else{
-        count2++;
         calendar2 += "<td>" + " " + "</td>";
       }
     }
