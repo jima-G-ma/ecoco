@@ -52,8 +52,13 @@ td.today {
 
 td.burning {
     font-size: 1px;
-    display: inline-block;
+    display: inline-flexbox;
     border-bottom: 2px rgb(255, 196, 196) solid;
+}
+td.blueing {
+    font-size: 1px;
+    display: inline-flexbox;
+    border-bottom: 2px rgb(196, 196, 255) solid;
 }
 
 /*ボタン*/
