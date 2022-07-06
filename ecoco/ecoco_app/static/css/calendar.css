@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 /*全体*/
-.wrapper2{
-   color: #666;
+.wrapper2 {
+    color: #666;
 }
 
 /*カレンダー*/
@@ -10,49 +10,58 @@
     text-align: center;
     width: 100%;
 }
+
 table {
-    outline: none;
+    border: none;
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
 }
-th {
-    color: #000;
-}
-th, td {
-    outline: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
+
+th,
+td {
+    color:black;
+    border: none;
+    padding-top: 12px;
+    padding-bottom: 3px;
+    font-family: fantasy;
+    font-size: large;
     text-align: center;
 }
+
 /*日曜日*/
 td:first-child {
-    color: red;
+    color: rgb(254, 112, 112);
 }
+
 /*土曜日*/
 td:last-child {
-    color: blue;
+    color: rgb(126, 126, 255);
 }
+
 /*前後月の日付*/
 td.disabled {
     color: #ccc;
 }
+
 /*本日*/
 td.today {
-    font-family: fantasy;
-    font-size: large;
-    color: #000;
+    display: inline-block;
+    border-bottom: #B78D4A solid 5px;
 }
 
 td.burning {
-    background-color: #f4a3a3;
-    color: #fff;
+    font-size: 1px;
+    display: inline-block;
+    border-bottom: 2px rgb(255, 196, 196) solid;
 }
 
 /*ボタン*/
 #next-prev-button {
     position: relative;
 }
-#next-prev-button button{
+
+#next-prev-button button {
     cursor: pointer;
     background: #B78D4A;
     color: #fff;
@@ -62,13 +71,16 @@ td.burning {
     padding: 0.5rem 2rem;
     margin: 1rem 0;
 }
-#next-prev-button button:hover{
+
+#next-prev-button button:hover {
     background-color: #D4BB92;
     border-color: #D4BB92;
 }
+
 #prev {
     float: left;
 }
+
 #next {
     float: right;
 }
