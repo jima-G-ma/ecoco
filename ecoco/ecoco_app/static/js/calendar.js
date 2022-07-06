@@ -94,7 +94,7 @@ function createProcess(year, month) {
         calendar2 += "<td>" + " " + "</td>";
       }else if(moeruDay){
         count2++;
-        calendar2 += "<td class='burning'>" + "燃えるゴミ" + count2 + "</td>";
+        calendar2 += "<td class='burning'>" + "燃えるゴミ" + "</td>";
       }else{
         count2++;
         calendar2 += "<td>" + " " + "</td>";
