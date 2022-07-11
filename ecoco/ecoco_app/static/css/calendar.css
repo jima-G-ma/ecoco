@@ -55,12 +55,29 @@ td.burning {
     display: inline-flexbox;
     border-bottom: 2px rgb(255, 196, 196) solid;
 }
+
+td.paper {
+    font-size: 1px;
+    display: inline-flexbox;
+    border-bottom: 3px rgb(202, 134, 71) dotted;
+}
+
 td.blueing {
     font-size: 1px;
     display: inline-flexbox;
     border-bottom: 2px rgb(196, 196, 255) solid;
 }
 
+td.no_burnig {
+    font-size: 1px;
+    display: inline-flexbox;
+    border-bottom: 3px rgb(56, 66, 206) dotted;
+}
+td.mix {
+    font-size: 1px;
+    display: inline-flexbox;
+    border-bottom: 2px rgb(0, 148, 49) solid;
+}
 /*ボタン*/
 #next-prev-button {
     position: relative;
