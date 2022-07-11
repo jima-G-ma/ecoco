@@ -3,6 +3,18 @@ const today = new Date();
 // 月末だとずれる可能性があるため、1日固定で取得
 var showDate = new Date(today.getFullYear(), today.getMonth(), 1);
 
+const ide = sessionStorage.getItem('ide');
+
+const ideObj = JSON.parse(ide);
+console.log(ideObj);
+
+//地区の取得
+var tiku;
+var tikuInfo = [];
+
+var month = today.getMonth();
+var year = today.getFullYear();
+
 function showmonth() {
   var month = now.getMonth();
   return month + 1;
@@ -12,13 +24,21 @@ function showday() {
   return day;
 }
 // 初期表示
-window.onload = function () {
+window.addEventListener('load', function () {
+  const area = document.form.area;
+  const num = area.selectedIndex;
+  tiku = area.options[num].value;
+  for (var i = 0; i < ideObj.length; i++) {
+    if (tiku == ideObj[i].name) {
+      tikuInfo.push({ name: ideObj[i].name, categoly: ideObj[i].categoly, date: ideObj[i].date });
+    }
+  }
   showProcess(today, calendar2);
   //今日の日付を表示
   var now = new Date();
   // document.getElementById("month").innerHTML = showmonth();
   // document.getElementById("date").innerHTML = showday();
-};
+});
 // 前の月表示
 function prev() {
   showDate.setMonth(showDate.getMonth() - 1);
@@ -32,7 +52,17 @@ function next() {
 }
 
 //地区変更時
-function chnageDistrict() {
+function changeDistrict(str) {
+  tikuInfo = [];
+  let tiku2 = str;
+  tiku = tiku2;
+  for (var i = 0; i < ideObj.length; i++) {
+    if (tiku2 == ideObj[i].name) {
+      tikuInfo.push({ name: ideObj[i].name, categoly: ideObj[i].categoly, date: ideObj[i].date });
+    }
+  }
+  console.log(tiku)
+  console.log(tikuInfo);
   showProcess(showDate);
 }
 
@@ -55,16 +85,13 @@ function createProcess(year, month) {
   }
   calendar2 += "</tr>";
 
-  //地区の取得
-  const area = document.form.area;
-  const num = area.selectedIndex;
-  const tiku = area.options[num].value;
-
   var count = 0;
+  var count2 = 1;
   var startDayOfWeek = new Date(year, month, 1).getDay();
   var endDate = new Date(year, month + 1, 0).getDate();
   var lastMonthEndDate = new Date(year, month, 0).getDate();
   var row = Math.ceil((startDayOfWeek + endDate) / week.length);
+  var month2 = month + 1;
 
   // 1行ずつ設定
   for (var i = 0; i < row; i++) {
@@ -98,21 +125,38 @@ function createProcess(year, month) {
     calendar2 += "<tr>";
     for (var k = 0; k < week.length; k++) {
       var moeruDay = (week[k] == "月" || week[k] == "水" || week[k] == "金");
-      var plaDay
-      if(tiku == "東岐波"||tiku == "西岐波"||tiku == "常盤"||tiku == "恩田"||tiku == "岬"||
-      tiku == "初見"||tiku == "上宇部"||tiku == "神原"||tiku == "琴芝"||tiku == "川上"){
+      var plaDay;
+      let boolean1 = tikuInfo.some(item => item.date == year + '/' + month2 + '/' + count2);
+      console.log(boolean1)
+      if (boolean1) {
+        console.log(year + '/' + month2 + '/' + count2);
+      }
+      if (tiku == "東岐波" || tiku == "西岐波" || tiku == "常盤" || tiku == "恩田" || tiku == "岬" ||
+        tiku == "初見" || tiku == "上宇部" || tiku == "神原" || tiku == "琴芝" || tiku == "川上") {
         plaDay = (week[k] == "木");
-      }else{
+      } else {
         plaDay = (week[k] == "火");
       }
-      if(i == 0 && k < startDayOfWeek || count >= endDate){
+      if (i == 0 && k < startDayOfWeek || count2 >= endDate+1) {
         calendar2 += "<td>" + " " + "</td>";
-      }else if(moeruDay){
-        calendar2 += "<td class='burning'>" + "燃えるゴミ" + "</td>";
-      }else if(plaDay){
-        calendar2 += "<td class='blueing'>" + "プラゴミ" + "</td>";
-      }else{
+
+      } else if (boolean1) {
+        let found = tikuInfo.findIndex(v => v.date == year + '/' + month2 + '/' + count2);
+        if (tikuInfo[found].categoly == "燃やせないごみ") {
+          calendar2 += "<td class='no_burnig'>" + tikuInfo[found].categoly + "</td>";
+        } else {
+          calendar2 += "<td class='paper'>" + tikuInfo[found].categoly + "</td>";
+        }
+        count2++;
+      } else if (moeruDay) {
+        calendar2 += "<td class='burning'>" + "燃えるごみ" + "</td>";
+        count2++;
+      } else if (plaDay) {
+        calendar2 += "<td class='blueing'>" + "プラごみ" + "</td>";
+        count2++
+      } else {
         calendar2 += "<td>" + " " + "</td>";
+        count2++;
       }
     }
     calendar2 += "</tr>";
