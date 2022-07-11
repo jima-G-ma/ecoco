@@ -10,6 +10,9 @@ console.log(ideObj);
 
 //地区の取得
 var tiku;
+const area = document.form.area;
+const num = area.selectedIndex;
+tiku = area.options[num].value;
 var tikuInfo = [];
 
 var month = today.getMonth();
@@ -25,15 +28,13 @@ function showday() {
 }
 // 初期表示
 window.addEventListener('load', function () {
-  const area = document.form.area;
-  const num = area.selectedIndex;
-  tiku = area.options[num].value;
-  for (var i = 0; i < ideObj.length; i++) {
-    if (tiku == ideObj[i].name) {
-      tikuInfo.push({ name: ideObj[i].name, categoly: ideObj[i].categoly, date: ideObj[i].date });
-    }
-  }
   showProcess(today, calendar2);
+  // for (var i = 0; i < ideObj.length; i++) {
+  //   if (tiku == ideObj[i].name) {
+  //     tikuInfo.push({ name: ideObj[i].name, categoly: ideObj[i].categoly, date: ideObj[i].date });
+  //   }
+  // }
+
   //今日の日付を表示
   var now = new Date();
   // document.getElementById("month").innerHTML = showmonth();
@@ -134,10 +135,12 @@ function createProcess(year, month) {
       if (tiku == "東岐波" || tiku == "西岐波" || tiku == "常盤" || tiku == "恩田" || tiku == "岬" ||
         tiku == "初見" || tiku == "上宇部" || tiku == "神原" || tiku == "琴芝" || tiku == "川上") {
         plaDay = (week[k] == "木");
-      } else {
+      } else if(tiku == ""){
+        plaDay = "";
+      }else {
         plaDay = (week[k] == "火");
       }
-      if (i == 0 && k < startDayOfWeek || count2 >= endDate+1) {
+      if (i == 0 && k < startDayOfWeek || count2 >= endDate + 1) {
         calendar2 += "<td>" + " " + "</td>";
 
       } else if (boolean1) {
