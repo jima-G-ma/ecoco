@@ -14,7 +14,7 @@ const area = document.form.area;
 const num = area.selectedIndex;
 tiku = area.options[num].value;
 var tikuInfo = [];
-
+var todayInfo;  createProcess(today.getFullYear(), today.getMonth())[1];
 var month = today.getMonth();
 var year = today.getFullYear();
 
@@ -32,17 +32,21 @@ window.addEventListener('load', function () {
   rel();
   //今日の日付を表示
   var now = new Date();
+  todayInfo = createProcess(today.getFullYear(), today.getMonth())[1];
+  document.querySelector('#todayInfo').innerHTML = todayInfo;
 });
 // 前の月表示
 function prev() {
   showDate.setMonth(showDate.getMonth() - 1);
   showProcess(showDate);
+  document.querySelector('#todayInfo').innerHTML = todayInfo;
 }
 
 // 次の月表示
 function next() {
   showDate.setMonth(showDate.getMonth() + 1);
   showProcess(showDate);
+  document.querySelector('#todayInfo').innerHTML = todayInfo;
 }
 
 //地区変更時
@@ -55,6 +59,7 @@ function changeDistrict(str) {
       tikuInfo.push({ name: ideObj[i].name, categoly: ideObj[i].categoly, date: ideObj[i].date });
     }
   }
+  document.querySelector('#todayInfo').innerHTML = createProcess(today.getFullYear(), today.getMonth())[1];
   console.log(tiku)
   console.log(tikuInfo);
   showProcess(showDate);
@@ -67,7 +72,7 @@ function showProcess(date) {
   document.querySelector('#header').innerHTML = year + "年 " + (month + 1) + "月";
 
   var calendar2 = createProcess(year, month);
-  document.querySelector('#calendar2').innerHTML = calendar2;
+  document.querySelector('#calendar2').innerHTML = calendar2[0];
 }
 
 // カレンダー作成
@@ -79,6 +84,7 @@ function createProcess(year, month) {
   }
   calendar2 += "</tr>";
 
+  var todayInfo="";
   var count = 0;
   var count2 = 1;
   var startDayOfWeek = new Date(year, month, 1).getDay();
@@ -140,15 +146,29 @@ function createProcess(year, month) {
         let found = tikuInfo.findIndex(v => v.date == year + '/' + month2 + '/' + count2);
         if (tikuInfo[found].categoly == "燃やせないごみ") {
           calendar2 += "<td class='no_burnig'>" + tikuInfo[found].categoly + "</td>";
+          if (judgeMonth && judgeYear && count2 == today.getDate()){
+            todayInfo += "<span class='text-secondary'>" + "燃やせないごみ</span>の日です";
+          }
         } else {
           calendar2 += "<td class='paper'>" + tikuInfo[found].categoly + "</td>";
+          if (judgeMonth && judgeYear && count2 == today.getDate()){
+            todayInfo += "<span class='text-success'>" + "古紙・紙製容器包装</span>の日です";
+          }
         }
         count2++;
       } else if (moeruDay) {
         calendar2 += "<td class='burning'>" + "燃えるごみ" + "</td>";
+        if (judgeMonth && judgeYear && count2 == today.getDate()){
+          todayInfo += "<span class='text-danger'>" + "燃えるごみ</span>の日です";
+        }
+
         count2++;
       } else if (plaDay) {
         calendar2 += "<td class='blueing'>" + "プラごみ" + "</td>";
+        if (judgeMonth && judgeYear && count2 == today.getDate()){
+          todayInfo += "<span class='text-primary'>" + "プラごみ</span>の日です";
+        }
+
         count2++
       } else {
         calendar2 += "<td>" + " " + "</td>";
@@ -157,7 +177,7 @@ function createProcess(year, month) {
     }
     calendar2 += "</tr>";
   }
-  return calendar2;
+  return [calendar2, todayInfo];
 }
 
 //ページ遷移した来た時に一度だけリロードする
