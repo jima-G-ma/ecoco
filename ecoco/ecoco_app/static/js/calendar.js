@@ -29,16 +29,9 @@ function showday() {
 // 初期表示
 window.addEventListener('load', function () {
   showProcess(today, calendar2);
-  // for (var i = 0; i < ideObj.length; i++) {
-  //   if (tiku == ideObj[i].name) {
-  //     tikuInfo.push({ name: ideObj[i].name, categoly: ideObj[i].categoly, date: ideObj[i].date });
-  //   }
-  // }
-
+  rel();
   //今日の日付を表示
   var now = new Date();
-  // document.getElementById("month").innerHTML = showmonth();
-  // document.getElementById("date").innerHTML = showday();
 });
 // 前の月表示
 function prev() {
@@ -165,4 +158,14 @@ function createProcess(year, month) {
     calendar2 += "</tr>";
   }
   return calendar2;
+}
+
+//ページ遷移した来た時に一度だけリロードする
+function rel() {
+  if (window.name != "any") {
+    location.reload();
+    window.name = "any";
+  } else {
+    window.name = "";
+  }
 }
