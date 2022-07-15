@@ -11451,7 +11451,11 @@ select {
   border-bottom: #13653f solid 5px;
 }
 
-.haiiro{
+.subtitle{
   color:lightgray;
   font-size: 2rem;
+}
+
+.item-size{
+  font-size: 1.2rem;
 }

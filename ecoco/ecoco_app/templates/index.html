@@ -9,98 +9,96 @@
 
 {% block main %}
 <!-- Page Content-->
-<div class="container-fluid p-0">
-    <!-- About-->
-    <section class="resume-section" id="about">
-        <div class="resume-section-content">
-            <h1 class="mb-0">
-                宇部市ごみ捨てガイド
-                <span class="text-success">ecoco</span>
-            </h1>
+<div class="container">
+  <div class="resume-section-content">
+    <h2 class="line text-center">
+      宇部市ごみ捨てガイド
+      <span class="text-success">&nbsp;&nbsp;&nbsp;ecoco</span>
+    </h2>
 
-            <p class="lead mb-5">
-                宇部市のごみの捨て方が分からないという方向けのサービスになっています。
-            </p>
+    <p class="lead mt-5 mb-5">
+      宇部市のごみの捨て方が分からないという方向けのサービスになっています。
+    </p>
+  </div>
+</div>
+<div class="container">
+  <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+    <div class="flex-grow-1">
+      <h2>
+        今日は{% now "Y年m月d日" %}
+      </h2>
+      <h3 id="todayInfo">
 
-            <div class="container">
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                  <div class="flex-grow-1">
-                    <h2>
-                      今日は{% now "Y年m月d日" %}
-                    </h2>
-                    <h3 id="todayInfo">
-                      
-                    </h3>
-              
-                    <p>地域： <span id="selectedarea"></span></p>
-                    <form name="form">
-                      <select id="district" name="area" onchange="clickBtn()">
-                        <option value="" selected>地区を選択してください</option>
-                        <option value="東岐波">東岐波</option>
-                        <option value="常盤">常盤</option>
-                        <option value="岬">岬</option>
-                        <option value="神原">神原</option>
-                        <option value="上宇部">上宇部</option>
-                        <option value="小羽山">小羽山</option>
-                        <option value="鵜の島">鵜の島</option>
-                        <option value="西宇部">西宇部</option>
-                        <option value="厚南">厚南</option>
-                        <option value="厚東">厚東</option>
-                        <option value="小野">小野</option>
-                        <option value="万倉">万倉</option>
-                        <option value="西岐波">西岐波</option>
-                        <option value="恩田">恩田</option>
-                        <option value="見初">見初</option>
-                        <option value="琴芝">琴芝</option>
-                        <option value="川上">川上</option>
-                        <option value="新川">新川</option>
-                        <option value="藤山">藤山</option>
-                        <option value="黒石">黒石</option>
-                        <option value="原">原</option>
-                        <option value="二俣瀬">二俣瀬</option>
-                        <option value="舟木">舟木</option>
-                        <option value="吉部">吉部</option>
-                      </select>
-                    </form>
-                    
-              
-                    <!--以下はカレンダーを表す-->
-                    <div class="wrapper">
-                      <!--xxxx年xx月を表示-->
-                      <h2 class="mt-3 text-center" id="header"></h1>
-              
-              
-                      <!--ボタンクリックで月移動-->
-                      <div id="next-prev-button">
-                        <button id="prev" onclick="prev()">
-                          <</button>
-                            <button id="next" onclick="next()">></button>
-                      </div>
-              
-                      <!--カレンダー-->
-                      <div id="calendar2"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--カレンダーのjavascript-->
-              <script type="text/javascript">
-                var Data = [];
-                fetch("{% static 'json/gomi.json' %}")
-                  .then(response => {
-                    return response.json();
-                  })
-                  .then(jsondata => {
-                    var data = [];
-                    data = jsondata;
-                    console.log(data)
-                    const dataStr = JSON.stringify(data);
-                    sessionStorage.setItem('ide', dataStr);
-                  });
-              </script>
-              <script src="{% static 'js/calendar.js' %}" type="text/javascript">
-              </script>
-                          
-        </div>
-    </section>
+      </h3>
+
+      <p>地域： <span id="selectedarea"></span></p>
+      <form name="form">
+        <select id="district" name="area" onchange="clickBtn()">
+          <option value="" selected>地区を選択してください</option>
+          <option value="東岐波">東岐波</option>
+          <option value="常盤">常盤</option>
+          <option value="岬">岬</option>
+          <option value="神原">神原</option>
+          <option value="上宇部">上宇部</option>
+          <option value="小羽山">小羽山</option>
+          <option value="鵜の島">鵜の島</option>
+          <option value="西宇部">西宇部</option>
+          <option value="厚南">厚南</option>
+          <option value="厚東">厚東</option>
+          <option value="小野">小野</option>
+          <option value="万倉">万倉</option>
+          <option value="西岐波">西岐波</option>
+          <option value="恩田">恩田</option>
+          <option value="見初">見初</option>
+          <option value="琴芝">琴芝</option>
+          <option value="川上">川上</option>
+          <option value="新川">新川</option>
+          <option value="藤山">藤山</option>
+          <option value="黒石">黒石</option>
+          <option value="原">原</option>
+          <option value="二俣瀬">二俣瀬</option>
+          <option value="舟木">舟木</option>
+          <option value="吉部">吉部</option>
+        </select>
+      </form>
+
+
+      <!--以下はカレンダーを表す-->
+      <div class="wrapper">
+        <!--xxxx年xx月を表示-->
+        <h2 class="mt-3 text-center" id="header">
+          </h1>
+
+
+          <!--ボタンクリックで月移動-->
+          <div id="next-prev-button">
+            <button id="prev" onclick="prev()">
+              <</button>
+                <button id="next" onclick="next()">></button>
+          </div>
+
+          <!--カレンダー-->
+          <div id="calendar2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--カレンダーのjavascript-->
+<script type="text/javascript">
+  var Data = [];
+  fetch("{% static 'json/gomi.json' %}")
+    .then(response => {
+      return response.json();
+    })
+    .then(jsondata => {
+      var data = [];
+      data = jsondata;
+      console.log(data)
+      const dataStr = JSON.stringify(data);
+      sessionStorage.setItem('ide', dataStr);
+    });
+</script>
+<script src="{% static 'js/calendar.js' %}" type="text/javascript">
+</script>
+</div>
 {% endblock %}
