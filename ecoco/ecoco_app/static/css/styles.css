@@ -11446,3 +11446,12 @@ select {
 #separation-table {
   table-layout: fixed;
 }
+
+.line{
+  border-bottom: #13653f solid 5px;
+}
+
+.haiiro{
+  color:lightgray;
+  font-size: 2rem;
+}
