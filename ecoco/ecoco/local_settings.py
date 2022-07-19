@@ -1,4 +1,4 @@
-SECRET_KEY = 'hu&&7vdie(8#ds%zimz^-38c-gv295yec@vn#$waap58jy9brj' #追加
+SECRET_KEY = 'j&$^*3xwxrro$bgj^7#ua()-h-$dzzeqx+j7bkfvdgvc6155&-' #追加
 
 import os
 from pathlib import Path
