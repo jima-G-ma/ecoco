@@ -27,7 +27,7 @@ class PlaceView(TemplateView):
 def bunbetsu(request):
   csv_header = ["label", "name", "notice", "furigana"]
   g_List = []
-  p1 = str(BASE_DIR) + "/ecoco_app/bunbetsu.csv"
+  p1 = str(BASE_DIR) + "/ecoco_app/static/csv/bunbetsu.csv"
   with open(p1, 'r', encoding="utf-8_sig") as f:
     for row in csv.DictReader(f, csv_header):
       g_List.append(row)
