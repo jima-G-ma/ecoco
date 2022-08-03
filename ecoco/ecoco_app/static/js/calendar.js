@@ -189,3 +189,15 @@ function rel() {
     window.name = "";
   }
 }
+
+var Data = [];
+fetch("{% static 'json/gomi.json' %}")
+  .then(response => {
+    return response.json();
+  })
+  .then(jsondata => {
+    var data = [];
+    data = jsondata;
+    const dataStr = JSON.stringify(data);
+    sessionStorage.setItem('ide', dataStr);
+  });
