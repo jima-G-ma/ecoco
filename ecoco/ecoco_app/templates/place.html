@@ -16,7 +16,46 @@
     <li><a href="https://www.city.ube.yamaguchi.jp/koukyouannai/shisetsu_kurashi/shisetsu_gomi/1009983/1009985.html">黒石ふれあいセンター北側資源ごみ拠点回収施設</a></li>
     <li><a href="https://www.city.ube.yamaguchi.jp/kurashi/gomi/gomishori/1014452/1002014.html">宇部市一般廃棄物最終処分場</a></li>
   </ul>
-
-
 </div>
+
+<body>
+  <style>
+  #map {
+      height: 100%;
+  }
+  html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+  }
+  </style>
+  <div id="map"></div>
+  <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: {lat: 33.951914671994885, lng: 131.24764311838135}
+        });
+
+        var markers = locations.map(function(location) {
+          return new google.maps.Marker({
+            position: location,
+            map: map,
+          });
+        });
+      }
+      var locations = [
+        {lat: 33.93353077450933, lng: 131.2409896350814},
+        {lat: 33.95002897742314, lng: 131.2438930115329},
+        {lat: 33.98425343658868, lng: 131.20785061001925},
+      ]
+
+      var infowindow = new google.maps.InfoWindow({
+          content: '新橋駅'
+      });
+      infowindow.open(map, marker);
+
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmDJEMC3G5lzAZaPhcrgLBC9qIh7SXvo&callback=initMap"></script>
+</body>
 {% endblock %}
