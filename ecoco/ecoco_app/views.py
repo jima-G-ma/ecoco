@@ -23,6 +23,9 @@ class SearchView(TemplateView):
 class PlaceView(TemplateView):
   template_name = "place.html"
 
+class SettingView(TemplateView):
+  template_name = "setting.html"
+
 
 def bunbetsu(request):
   csv_header = ["label", "name", "notice", "furigana"]
