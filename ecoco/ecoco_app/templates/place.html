@@ -10,23 +10,33 @@
 <div class="container mt-5">
   <p>宇部市のゴミ処理施設の一覧です。</p>
 
-  <ul>
+  <!-- <ul>
     <li><a href="https://www.city.ube.yamaguchi.jp/kurashi/gomi/gomishori/1002019/index.html">環境保全センター</a></li>
     <li><a href="https://www.city.ube.yamaguchi.jp/koukyouannai/shisetsu_kurashi/shisetsu_gomi/1009983/1009984.html">新町資源ごみ拠点回収施設</a></li>
     <li><a href="https://www.city.ube.yamaguchi.jp/koukyouannai/shisetsu_kurashi/shisetsu_gomi/1009983/1009985.html">黒石ふれあいセンター北側資源ごみ拠点回収施設</a></li>
     <li><a href="https://www.city.ube.yamaguchi.jp/kurashi/gomi/gomishori/1014452/1002014.html">宇部市一般廃棄物最終処分場</a></li>
-  </ul>
+  </ul> -->
+
+  <p>地図： <span id="selectedplace"></span></p>
+      <form name="place_form">
+        <select id="place" name="place" onchange="clickBtn()">
+          <option value="" selected>表示する地図を選択してください</option>
+          <option value="1">小型家電の回収ボックス</option>
+          <option value="2">資源の回収拠点</option>
+          <option value="3">主な粗大ごみ処理手数料納付券販売場所</option>
+        </select>
+      </form>
 </div>
 
 <body>
   <style>
   #map {
       height: 100%;
+      width: 80%;
+      margin: 0 auto;
   }
   html, body {
       height: 100%;
-      margin: 0;
-      padding: 0;
   }
   </style>
   <div id="map"></div>
@@ -49,12 +59,6 @@
         {lat: 33.95002897742314, lng: 131.2438930115329},
         {lat: 33.98425343658868, lng: 131.20785061001925},
       ]
-
-      var infowindow = new google.maps.InfoWindow({
-          content: '新橋駅'
-      });
-      infowindow.open(map, marker);
-
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmDJEMC3G5lzAZaPhcrgLBC9qIh7SXvo&callback=initMap"></script>
 </body>
