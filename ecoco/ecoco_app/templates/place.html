@@ -8,29 +8,19 @@
   </h2>
 </div>
 <div class="container mt-5">
-  <p>宇部市のゴミ処理施設の一覧です。</p>
-
-  <!-- <ul>
-    <li><a href="https://www.city.ube.yamaguchi.jp/kurashi/gomi/gomishori/1002019/index.html">環境保全センター</a></li>
-    <li><a href="https://www.city.ube.yamaguchi.jp/koukyouannai/shisetsu_kurashi/shisetsu_gomi/1009983/1009984.html">新町資源ごみ拠点回収施設</a></li>
-    <li><a href="https://www.city.ube.yamaguchi.jp/koukyouannai/shisetsu_kurashi/shisetsu_gomi/1009983/1009985.html">黒石ふれあいセンター北側資源ごみ拠点回収施設</a></li>
-    <li><a href="https://www.city.ube.yamaguchi.jp/kurashi/gomi/gomishori/1014452/1002014.html">宇部市一般廃棄物最終処分場</a></li>
-  </ul> -->
-
-  <p>地図： <span id="selectedplace"></span></p>
-      <form name="place_form">
-        <select id="place" name="place" onchange="clickBtn()">
-          <option value="" selected>表示する地図を選択してください</option>
-          <option value="1">小型家電の回収ボックス</option>
-          <option value="2">資源の回収拠点</option>
-          <option value="3">主な粗大ごみ処理手数料納付券販売場所</option>
-        </select>
-      </form>
+  <p>宇部市の主なゴミ回収・処理施設を地図上に表示しています。</p>
+  <li>宇部市環境保全センター</li>
+  <li>新町資源ごみ拠点回収施設</li>
+  <li>黒石ふれあいセンター</li>
+  <li>東岐波ふれあいセンター</li>
+  <li>東見初埋立地</li>
 </div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=APIkey&callback=initMap"></script>
 
 <body>
   <style>
-  #map {
+  #ecoco_map {
       height: 100%;
       width: 80%;
       margin: 0 auto;
@@ -39,27 +29,65 @@
       height: 100%;
   }
   </style>
-  <div id="map"></div>
+  <div id="ecoco_map"></div>
   <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: {lat: 33.951914671994885, lng: 131.24764311838135}
-        });
-
-        var markers = locations.map(function(location) {
-          return new google.maps.Marker({
-            position: location,
-            map: map,
-          });
-        });
+    var map;
+    var marker = [];
+    var infoWindow =[];
+    var markerData = [
+      {
+        name: '宇部市環境保全センター',
+        lat: 33.93415,
+        lng: 131.24220
+      }, {
+        name: '東見初埋立地',
+        lat: 33.92883,
+        lng: 131.24990
+      }, {
+        name: '新町資源ごみ拠点回収施設',
+        lat: 33.95034,
+        lng: 131.24396
+      }, {
+        name: '黒石ふれあいセンター',
+        lat: 33.98608,
+        lng: 131.20715
+      }, {
+        name: '東岐波ふれあいセンター',
+        lat: 33.98302,
+        lng: 131.34004
       }
-      var locations = [
-        {lat: 33.93353077450933, lng: 131.2409896350814},
-        {lat: 33.95002897742314, lng: 131.2438930115329},
-        {lat: 33.98425343658868, lng: 131.20785061001925},
-      ]
+    ];
+
+  function initMap() {
+      //地図の作成
+      var mapLatLng = new google.maps.LatLng({lat: markerData[0]['lat'], lng: markerData[0]['lng']}); // 緯度経度のデータ作成
+      map = new google.maps.Map(document.getElementById('ecoco_map'), { // #ecoco_mapに地図を埋め込む
+        center: mapLatLng, // 地図の中心を指定
+        zoom: 15
+      });
+
+    // マーカー毎の処理
+      for (var i = 0; i < markerData.length; i++) {
+          markerLatLng = new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']}); // 緯度経度のデータ作成
+          marker[i] = new google.maps.Marker({ // マーカーの追加
+            position: markerLatLng, // マーカーを立てる位置を指定
+                map: map // マーカーを立てる地図を指定
+          });
+ 
+        infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+            content: '<div class="sample">' + markerData[i]['name'] + '</div>' // 吹き出しに表示する内容
+        });
+ 
+        markerEvent(i); // マーカーにクリックイベントを追加
+    }
+  }
+ 
+    // マーカーにクリックイベントを追加
+    function markerEvent(i) {
+      marker[i].addListener('click', function() { // マーカーをクリックしたとき
+      infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+    });
+}
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmDJEMC3G5lzAZaPhcrgLBC9qIh7SXvo&callback=initMap"></script>
 </body>
 {% endblock %}
