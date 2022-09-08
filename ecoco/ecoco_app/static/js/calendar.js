@@ -16,6 +16,7 @@ var tikuInfo = [];
 var todayInfo;  createProcess(today.getFullYear(), today.getMonth())[1];
 var month = today.getMonth();
 var year = today.getFullYear();
+var remind_categoly ="";
 
 function showmonth() {
   var month = now.getMonth();
@@ -51,6 +52,7 @@ function next() {
 //地区変更時
 function changeDistrict(str) {
   tikuInfo = [];
+  remind_categoly = ""; //カテゴリーをリセット
   let tiku2 = str;
   tiku = tiku2;
   for (var i = 0; i < ideObj.length; i++) {
@@ -59,11 +61,6 @@ function changeDistrict(str) {
     }
   }
   document.querySelector('#todayInfo').innerHTML = createProcess(today.getFullYear(), today.getMonth())[1];
-  console.log(tiku);
-  console.log(todayInfo);
-  if (todayInfo == "<span class='text-danger'>" + "燃えるごみ</span>の日です"){
-    reminder();
-  }
   showProcess(showDate);
 }
 
@@ -86,7 +83,7 @@ function createProcess(year, month) {
   }
   calendar2 += "</tr>";
 
-  var todayInfo="";
+  var todayInfo = "";
   var count = 0;
   var count2 = 1;
   var startDayOfWeek = new Date(year, month, 1).getDay();
@@ -146,11 +143,14 @@ function createProcess(year, month) {
           calendar2 += "<td class='no_burnig'>" + tikuInfo[found].categoly + "</td>";
           if (judgeMonth && judgeYear && count2 == today.getDate()){
             todayInfo += "<span class='text-secondary'>" + "燃やせないごみ</span>の日です";
+            remind_categoly += "燃やせないごみ";
           }
         } else {
           calendar2 += "<td class='paper'>" + tikuInfo[found].categoly + "</td>";
           if (judgeMonth && judgeYear && count2 == today.getDate()){
             todayInfo += "<span class='text-success'>" + "古紙・紙製容器包装</span>の日です";
+            remind_categoly += "古紙・紙製容器包装";
+
           }
         }
         count2++;
@@ -158,6 +158,7 @@ function createProcess(year, month) {
         calendar2 += "<td class='burning'>" + "燃えるごみ" + "</td>";
         if (judgeMonth && judgeYear && count2 == today.getDate()){
           todayInfo += "<span class='text-danger'>" + "燃えるごみ</span>の日です";
+          remind_categoly += "燃えるごみ";
         }
 
         count2++;
@@ -165,6 +166,7 @@ function createProcess(year, month) {
         calendar2 += "<td class='blueing'>" + "プラごみ" + "</td>";
         if (judgeMonth && judgeYear && count2 == today.getDate()){
           todayInfo += "<span class='text-primary'>" + "プラごみ</span>の日です";
+          remind_categoly += "プラごみ";
         }
 
         count2++
@@ -175,6 +177,12 @@ function createProcess(year, month) {
     }
     calendar2 += "</tr>";
   }
+  
+  //ごみの日の場合は通知をする
+  if(remind_categoly) {
+    reminder();  
+  }
+
   return [calendar2, todayInfo];
 }
 
@@ -191,11 +199,11 @@ function rel() {
 
 function reminder() {
   Push.create("今日はごみの日です！", {
-      body: "燃やせるごみの日です！",
-      icon: 'ecoco/ecoco_app/static/img/ecoco.jpg', // 右側に表示される画像のパス
+      body: remind_categoly + "の日です！",
+      icon: 'ecoco\ecoco_app\static\img\ecoco.jpg', // 右側に表示される画像のパス
       timeout: 4000,
       onClick: function () {
-          location.href = 'https://yahoo.co.jp';
+          location.href = 'https://www.city.ube.yamaguchi.jp/kurashi/gomi/index.html';
           this.close();
       }
   });
