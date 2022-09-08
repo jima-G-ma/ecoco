@@ -8,6 +8,21 @@
         設定
         <span class="subtitle">&nbsp;&nbsp;&nbsp;setting</span>
     </h2>
-  
+
+    <script type="text/javascript">
+        function reminder() {
+            Push.create("今日はごみの日です！", {
+                body: "燃やせるごみの日です！",
+                icon: 'ecoco/ecoco_app/static/img/ecoco.jpg', // 右側に表示される画像のパス
+                timeout: 4000,
+                onClick: function () {
+                    location.href = 'https://yahoo.co.jp';
+                    this.close();
+                }
+            });
+        console.log(tikuInfo);
+        }
+
+    </script>
 </div>
 {% endblock %}

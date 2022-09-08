@@ -6,7 +6,6 @@ var showDate = new Date(today.getFullYear(), today.getMonth(), 1);
 const ide = sessionStorage.getItem('ide');
 
 const ideObj = JSON.parse(ide);
-console.log(ideObj);
 
 //地区の取得
 var tiku;
@@ -60,8 +59,11 @@ function changeDistrict(str) {
     }
   }
   document.querySelector('#todayInfo').innerHTML = createProcess(today.getFullYear(), today.getMonth())[1];
-  console.log(tiku)
-  console.log(tikuInfo);
+  console.log(tiku);
+  console.log(todayInfo);
+  if (todayInfo == "<span class='text-danger'>" + "燃えるごみ</span>の日です"){
+    reminder();
+  }
   showProcess(showDate);
 }
 
@@ -127,10 +129,6 @@ function createProcess(year, month) {
       var moeruDay = (week[k] == "月" || week[k] == "水" || week[k] == "金");
       var plaDay;
       let boolean1 = tikuInfo.some(item => item.date == year + '/' + month2 + '/' + count2);
-      console.log(boolean1)
-      if (boolean1) {
-        console.log(year + '/' + month2 + '/' + count2);
-      }
       if (tiku == "東岐波" || tiku == "西岐波" || tiku == "常盤" || tiku == "恩田" || tiku == "岬" ||
         tiku == "初見" || tiku == "上宇部" || tiku == "神原" || tiku == "琴芝" || tiku == "川上") {
         plaDay = (week[k] == "木");
@@ -180,6 +178,7 @@ function createProcess(year, month) {
   return [calendar2, todayInfo];
 }
 
+
 //ページ遷移した来た時に一度だけリロードする
 function rel() {
   if (window.name != "any") {
@@ -188,4 +187,16 @@ function rel() {
   } else {
     window.name = "";
   }
+}
+
+function reminder() {
+  Push.create("今日はごみの日です！", {
+      body: "燃やせるごみの日です！",
+      icon: 'ecoco/ecoco_app/static/img/ecoco.jpg', // 右側に表示される画像のパス
+      timeout: 4000,
+      onClick: function () {
+          location.href = 'https://yahoo.co.jp';
+          this.close();
+      }
+  });
 }
