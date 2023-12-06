@@ -1,0 +1,19 @@
+{% extends "account/base.html" %}
+
+<!-- {% load static %} -->
+
+{% block main %}
+<div class="container">
+    <h2 class="line text-center">
+        ログイン
+        <span class="subtitle">&nbsp;&nbsp;&nbsp;login</span>
+    </h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    <p>新規登録はこちら <a href="{% url 'account_signup' %}">Sign up</a></p>
+</div>
+{% endblock %}

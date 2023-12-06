@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block main %}
+<div class="container">
+    <h2 class="line text-center">
+        メールアドレス変更
+        <span class="subtitle">&nbsp;&nbsp;&nbsp;change email</span>
+    </h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">change email</button>
+    </form>
+</div>
+{% endblock %}
