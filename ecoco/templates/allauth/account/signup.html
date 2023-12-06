@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block main %}
+<div class="container">
+    <h2 class="line text-center">
+        新規登録
+        <span class="subtitle">&nbsp;&nbsp;&nbsp;signup</span>
+    </h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">signup</button>
+    </form>
+</div>
+{% endblock %}

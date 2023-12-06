@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block main %}
+<div class="container">
+    <h2 class="line text-center">
+        ログアウト
+        <span class="subtitle">&nbsp;&nbsp;&nbsp;logout</span>
+    </h2>
+
+    <h3>{{ user.username }}さん</h3>
+    <p>ログアウトしますか？</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Logout</button>
+    </form>
+</div>
+{% endblock %}
