@@ -177,11 +177,6 @@ function createProcess(year, month) {
     }
     calendar2 += "</tr>";
   }
-  
-  //ごみの日の場合は通知をする
-  if(remind_categoly) {
-    reminder();  
-  }
 
   return [calendar2, todayInfo];
 }
@@ -195,16 +190,4 @@ function rel() {
   } else {
     window.name = "";
   }
-}
-
-function reminder() {
-  Push.create("今日はごみの日です！", {
-      body: remind_categoly + "の日です！",
-      icon: 'ecoco\ecoco_app\static\img\ecoco.jpg', // 右側に表示される画像のパス
-      timeout: 4000,
-      onClick: function () {
-          location.href = 'https://www.city.ube.yamaguchi.jp/kurashi/gomi/index.html';
-          this.close();
-      }
-  });
 }
