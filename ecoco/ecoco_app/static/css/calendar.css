@@ -1,84 +1,76 @@
 @charset "utf-8";
 
-/*全体*/
+/* 全体 */
 .wrapper2 {
     color: #666;
 }
 
-/*カレンダー*/
+/* カレンダー */
 #calendar2 {
     text-align: center;
     width: 100%;
 }
 
 table {
-    border: none;
     border-collapse: collapse;
     width: 100%;
     table-layout: fixed;
+    border: none; /* テーブルの線を削除 */
 }
 
-th,
-td {
-    color:black;
-    border: none;
+th, td {
+    color: black;
     padding-top: 12px;
     padding-bottom: 3px;
-    font-family: fantasy;
+    font-family: fantasy; /* 元のフォントを使用 */
     font-size: large;
     text-align: center;
+    border: none; /* セルの線を削除 */
 }
 
-/*日曜日*/
+/* 日曜日 */
 td:first-child {
     color: rgb(254, 112, 112);
 }
 
-/*土曜日*/
+/* 土曜日 */
 td:last-child {
     color: rgb(126, 126, 255);
 }
 
-/*前後月の日付*/
+/* 前後月の日付 */
 td.disabled {
     color: #ccc;
 }
 
-/*本日*/
+/* 本日 */
 td.today {
     display: inline-block;
     border-bottom: #B78D4A solid 5px;
 }
 
+/* ごみの種類によって色を変える */
 td.burning {
-    font-size: 1px;
-    display: inline-flexbox;
-    border-bottom: 2px rgb(255, 196, 196) solid;
+    background-color: rgb(255, 200, 200); /* 燃えるごみ：淡い赤色 */
 }
 
 td.paper {
-    font-size: 1px;
-    display: inline-flexbox;
-    border-bottom: 3px rgb(202, 134, 71) dotted;
+    background-color: rgb(255, 250, 200); /* 紙製品：淡い黄色 */
 }
 
 td.blueing {
-    font-size: 1px;
-    display: inline-flexbox;
-    border-bottom: 2px rgb(196, 196, 255) solid;
+    background-color: rgb(200, 200, 255); /* プラスチック：淡い青色 */
 }
 
-td.no_burnig {
-    font-size: 1px;
-    display: inline-flexbox;
-    border-bottom: 3px rgb(56, 66, 206) dotted;
+td.no_burning {
+    background-color: rgb(200, 255, 200); /* 燃やせないごみ：淡い緑色 */
 }
+
 td.mix {
-    font-size: 1px;
-    display: inline-flexbox;
-    border-bottom: 2px rgb(0, 148, 49) solid;
+    background-color: rgb(255, 200, 255); /* 混合物：淡い紫色 */
 }
-/*ボタン*/
+
+/* ボタン */
 #next-prev-button {
     position: relative;
 }
@@ -87,7 +79,7 @@ td.mix {
     cursor: pointer;
     background: #B78D4A;
     color: #fff;
-    border: 1px solid #B78D4A;
+    border: none; /* ボタンの枠線を削除 */
     border-radius: 4px;
     font-size: 1rem;
     padding: 0.5rem 2rem;

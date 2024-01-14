@@ -13,7 +13,7 @@ const area = document.form.area;
 const num = area.selectedIndex;
 tiku = area.options[num].value;
 var tikuInfo = [];
-var todayInfo;  createProcess(today.getFullYear(), today.getMonth())[1];
+var todayInfo = createProcess(today.getFullYear(), today.getMonth())[1];
 var month = today.getMonth();
 var year = today.getFullYear();
 var remind_categoly ="";
@@ -51,6 +51,7 @@ function next() {
 
 //地区変更時
 function changeDistrict(str) {
+  
   tikuInfo = [];
   remind_categoly = ""; //カテゴリーをリセット
   let tiku2 = str;
@@ -60,8 +61,10 @@ function changeDistrict(str) {
       tikuInfo.push({ name: ideObj[i].name, categoly: ideObj[i].categoly, date: ideObj[i].date });
     }
   }
-  document.querySelector('#todayInfo').innerHTML = createProcess(today.getFullYear(), today.getMonth())[1];
   showProcess(showDate);
+  document.querySelector('#todayInfo').innerHTML = createProcess(today.getFullYear(), today.getMonth())[1];
+  
+ 
 }
 
 // カレンダー表示
@@ -72,6 +75,22 @@ function showProcess(date) {
 
   var calendar2 = createProcess(year, month);
   document.querySelector('#calendar2').innerHTML = calendar2[0];
+}
+
+
+// Google Calendarリンク用の日付フォーマット関数
+function formatDateForGoogleCalendar(year, month, day) {
+  const date = new Date(year, month, day);
+  const formattedDate = date.toISOString().split('T')[0].replace(/-/g, '');
+  return formattedDate;
+}
+
+// Google Calendarリンクの生成関数
+function createGoogleCalendarLink(year, month, day, title) {
+  const startDate = formatDateForGoogleCalendar(year, month, day+1);
+  const endDate = formatDateForGoogleCalendar(year, month, day + 2); // 終了日は翌日
+  const url = `http://www.google.com/calendar/event?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}`;
+  return url;
 }
 
 // カレンダー作成
@@ -138,15 +157,18 @@ function createProcess(year, month) {
         calendar2 += "<td>" + " " + "</td>";
 
       } else if (boolean1) {
+        console.log(tikuInfo);
         let found = tikuInfo.findIndex(v => v.date == year + '/' + month2 + '/' + count2);
         if (tikuInfo[found].categoly == "燃やせないごみ") {
-          calendar2 += "<td class='no_burnig'>" + tikuInfo[found].categoly + "</td>";
+          const googleCalendarLink = createGoogleCalendarLink(year, month, count2, '燃やせないごみの日');
+          calendar2 += "<td class='no_burning'><a href='" + googleCalendarLink + "' target='_blank'>燃やせないごみ</a></td>";
           if (judgeMonth && judgeYear && count2 == today.getDate()){
             todayInfo += "<span class='text-secondary'>" + "燃やせないごみ</span>の日です";
             remind_categoly += "燃やせないごみ";
           }
         } else {
-          calendar2 += "<td class='paper'>" + tikuInfo[found].categoly + "</td>";
+          const googleCalendarLink = createGoogleCalendarLink(year, month, count2, '古紙・紙製容器包装の日');
+          calendar2 += "<td class='paper'><a href='" + googleCalendarLink + "' target='_blank'>古紙・紙製容器包装</a></td>";
           if (judgeMonth && judgeYear && count2 == today.getDate()){
             todayInfo += "<span class='text-success'>" + "古紙・紙製容器包装</span>の日です";
             remind_categoly += "古紙・紙製容器包装";
@@ -155,15 +177,17 @@ function createProcess(year, month) {
         }
         count2++;
       } else if (moeruDay) {
-        calendar2 += "<td class='burning'>" + "燃えるごみ" + "</td>";
+        console.log(tikuInfo)
+        const googleCalendarLink = createGoogleCalendarLink(year, month, count2, '燃えるごみの日');
+        calendar2 += "<td class='burning'><a href='" + googleCalendarLink + "' target='_blank'>燃えるごみ</a></td>";
         if (judgeMonth && judgeYear && count2 == today.getDate()){
           todayInfo += "<span class='text-danger'>" + "燃えるごみ</span>の日です";
           remind_categoly += "燃えるごみ";
         }
-
         count2++;
       } else if (plaDay) {
-        calendar2 += "<td class='blueing'>" + "プラごみ" + "</td>";
+        const googleCalendarLink = createGoogleCalendarLink(year, month, count2, 'プラごみの日');
+        calendar2 += "<td class='blueing'><a href='" + googleCalendarLink + "' target='_blank'>プラごみ</a></td>";
         if (judgeMonth && judgeYear && count2 == today.getDate()){
           todayInfo += "<span class='text-primary'>" + "プラごみ</span>の日です";
           remind_categoly += "プラごみ";
@@ -174,6 +198,7 @@ function createProcess(year, month) {
         calendar2 += "<td>" + " " + "</td>";
         count2++;
       }
+
     }
     calendar2 += "</tr>";
   }
