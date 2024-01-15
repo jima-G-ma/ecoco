@@ -12,5 +12,4 @@ urlpatterns = [
     path('place/', PlaceView.as_view()),
     path('setting/', SettingView.as_view()),
     path('mypage/<int:pk>', MypageView.as_view(), name='mypage'),
-    path('send_email', views.index, name='send_email'),
 ]

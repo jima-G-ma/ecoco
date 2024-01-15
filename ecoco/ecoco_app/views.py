@@ -55,19 +55,3 @@ def bunbetsu(request):
 
   sepa = {"item": g_List}
   return render(request, "separation.html", sepa)
-
-def index(request):
-    """題名"""
-    subject = "題名"
-    """本文"""
-    message = "本文です\nこんにちは。メールを送信しました"
-    """送信元メールアドレス"""
-    from_email = "d099vgu@yamaguchi-u.ac.jp"
-    """宛先メールアドレス"""
-    recipient_list = [
-        "apptest@apptest.com"
-    ]
-
-    send_mail(subject, message, from_email, recipient_list)
-    return HttpResponse('<h1>email send complete.</h1>')
-
