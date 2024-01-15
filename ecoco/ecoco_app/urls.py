@@ -2,6 +2,7 @@ from django.urls import path
 
 from . views import IndexView, CalendarView, SearchView, PlaceView, SettingView, MypageView
 from . views import bunbetsu
+from . import views
 
 urlpatterns = [
     path('', IndexView.as_view()),
@@ -11,4 +12,5 @@ urlpatterns = [
     path('place/', PlaceView.as_view()),
     path('setting/', SettingView.as_view()),
     path('mypage/<int:pk>', MypageView.as_view(), name='mypage'),
+    path('send_email', views.index, name='send_email'),
 ]

@@ -7,6 +7,10 @@ from .forms import SigninForm
 # ログイン関係
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login, logout
+from allauth.account.views import EmailView
+
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
 
 User = get_user_model()
 
@@ -34,4 +38,3 @@ def signin(request):
         'form': form
     }
     return render(request, 'ecoco_app/index.html', context)
-
