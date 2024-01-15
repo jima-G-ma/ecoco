@@ -11477,7 +11477,7 @@ button {
   border-radius: 5px; /* ボーダーの角丸 */
 }
 
-button::before {
+/* button::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -11488,7 +11488,7 @@ button::before {
   border-style: solid;
   border-color: #fff transparent transparent transparent;
   transform: rotate(-90deg);
-}
+} */
 
 検索フォーム
 .search-form-005 {

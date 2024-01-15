@@ -3,20 +3,22 @@
 {% block main %}
 <div class="container">
   <h2 class="line text-center">
-    ゴミ捨て場所
+    ゴミ処理施設
     <span class="subtitle">&nbsp;&nbsp;&nbsp;dumpsite</span>
   </h2>
 </div>
 <div class="container mt-5">
-  <p>宇部市の主なゴミ回収・処理施設を地図上に表示しています。</p>
+  <p>宇部市の主なゴミ回収・処理、リサイクル施設を地図上に表示しています。</p>
   <li>宇部市環境保全センター</li>
   <li>新町資源ごみ拠点回収施設</li>
-  <li>黒石ふれあいセンター</li>
-  <li>東岐波ふれあいセンター</li>
-  <li>東見初埋立地</li>
+  <li>東岐波リサイクルボックス</li>
+  <li>川上リサイクルボックス</li>
+  <li>黒石ふれあいセンター北側資源ごみ拠点回収施設<br>
+    ※その他、各地区のふれあいセンターで古着・古布、小型家電などの回収を行っています。詳細は各ふれあいセンターのHPにて確認できます。
+  </li>
 </div>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=APIkey&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=自分のAPIキー&callback=initMap"></script>
 
 <body>
   <style>
@@ -36,25 +38,26 @@
     var infoWindow =[];
     var markerData = [
       {
-        name: '宇部市環境保全センター',
-        lat: 33.93415,
-        lng: 131.24220
+        name: '<a href=https://www.city.ube.yamaguchi.jp/kurashi/gomi/gomishori/1002019/index.html target="_blank">宇部市環境保全センター</a><br><a href="https://www.google.co.jp/maps/place/%E5%AE%87%E9%83%A8%E5%B8%82%E7%92%B0%E5%A2%83%E4%BF%9D%E5%85%A8%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E6%96%BD%E8%A8%AD%E8%AA%B2%E3%83%AA%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%E3%83%97%E3%83%A9%E3%82%B6/@33.9338622,131.2383144,17z/data=!4m14!1m7!3m6!1s0x35438720745acb91:0xecf34fce9f990f52!2z5a6H6YOo5biC55Kw5aKD5L-d5YWo44K744Oz44K_44O85pa96Kit6Kqy44Oq44K144Kk44Kv44Or44OX44Op44K2!8m2!3d33.9338578!4d131.2408893!16s%2Fg%2F1tfkt323!3m5!1s0x35438720745acb91:0xecf34fce9f990f52!8m2!3d33.9338578!4d131.2408893!16s%2Fg%2F1tfkt323?hl=ja&entry=ttu" target="_blank">Googleマップで見る</a>'
+        ,
+        lat: 33.933358,
+        lng: 131.241201
       }, {
-        name: '東見初埋立地',
-        lat: 33.92883,
-        lng: 131.24990
+        name: '<a href=https://www.city.ube.yamaguchi.jp/koukyouannai/shisetsu_kurashi/shisetsu_gomi/1009983/1009984.html target="_blank">新町資源ごみ拠点回収施設</a><br><a href="https://www.google.co.jp/maps/place/%E5%AE%87%E9%83%A8%E5%B8%82+%E6%96%B0%E7%94%BA%E8%B3%87%E6%BA%90%E3%81%94%E3%81%BF%E6%8B%A0%E7%82%B9%E5%9B%9E%E5%8F%8E%E6%96%BD%E8%A8%AD/@33.9498465,131.2390543,17z/data=!3m1!4b1!4m6!3m5!1s0x354380d4cd312b01:0xc61b4bdfbf820908!8m2!3d33.9498421!4d131.2439252!16s%2Fg%2F11h3bm9fhg?hl=ja&entry=ttu" target="_blank">Googleマップで見る</a>',
+        lat: 33.949842,
+        lng: 131.243925
       }, {
-        name: '新町資源ごみ拠点回収施設',
-        lat: 33.95034,
-        lng: 131.24396
+        name: '<a href=https://www.ecoru-recycle.com/a5-recycle-box/index.html#higashikiwa target="_blank">東岐波リサイクルボックス</a><br><a href="https://www.google.co.jp/maps/place/%E6%9D%B1%E5%B2%90%E6%B3%A2+%E3%83%AA%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%ABBOX/@33.9701035,131.3286114,17z/data=!3m1!4b1!4m6!3m5!1s0x35447e37fff55291:0x896ebf02ccf140ac!8m2!3d33.9700991!4d131.3311863!16s%2Fg%2F11ffl__13d?hl=ja&entry=ttu" target="_blank">Googleマップで見る</a>',
+        lat: 33.970099,
+        lng: 131.331186
       }, {
-        name: '黒石ふれあいセンター',
-        lat: 33.98608,
-        lng: 131.20715
+        name: '<a href=https://www.ecoru-recycle.com/a5-recycle-box/index.html#kawakami target="_blank">川上リサイクルボックス</a><br><a href="https://www.google.co.jp/maps/place/%E5%B7%9D%E4%B8%8A%E3%83%AA%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%ABBOX/@33.9882026,131.2675362,17z/data=!3m1!4b1!4m6!3m5!1s0x354381ef6392bf63:0x2eda89b12c78adbc!8m2!3d33.9881982!4d131.2701111!16s%2Fg%2F11rqmnx08v?hl=ja&entry=ttu" target="_blank">Googleマップで見る</a>',
+        lat: 33.988198,
+        lng: 131.270111
       }, {
-        name: '東岐波ふれあいセンター',
-        lat: 33.98302,
-        lng: 131.34004
+        name: '<a href=https://www.city.ube.yamaguchi.jp/koukyouannai/shisetsu_kurashi/shisetsu_gomi/1009983/1009985.html target="_blank">黒石ふれあいセンター北側資源ごみ拠点回収施設</a><br><a href="https://www.google.co.jp/maps/place/%E9%BB%92%E7%9F%B3%E3%81%B5%E3%82%8C%E3%81%82%E3%81%84%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC/@33.9841377,131.2052633,17z/data=!3m1!4b1!4m6!3m5!1s0x354381677360f065:0x9eec807323c8624e!8m2!3d33.9841333!4d131.2078382!16s%2Fg%2F1tcvrmzh?hl=ja&entry=ttu" target="_blank">Googleマップで見る</a>',
+        lat: 33.984133,
+        lng: 131.207838
       }
     ];
 
@@ -63,7 +66,7 @@
       var mapLatLng = new google.maps.LatLng({lat: markerData[0]['lat'], lng: markerData[0]['lng']}); // 緯度経度のデータ作成
       map = new google.maps.Map(document.getElementById('ecoco_map'), { // #ecoco_mapに地図を埋め込む
         center: mapLatLng, // 地図の中心を指定
-        zoom: 15
+        zoom: 12
       });
 
     // マーカー毎の処理

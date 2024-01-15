@@ -9,13 +9,17 @@
         <span class="subtitle">&nbsp;&nbsp;&nbsp;Mypage</span>
     </h2>
 
-    <ul>
+    <h4 class="mb-4">ユーザ名：{{ user.username }}</h4>
+    <h4 class="mb-4">メールアドレス：{{ user.email }}</h4>
+    <h4 class="mb-4">地域： <span id="selectedArea">{{ user.area }}</span></h4>
+
+    <!-- <ul>
         <li>ユーザ名：{{ user.username }}</li>
         <li>メールアドレス：{{ user.email }}</li>
         <li>地域： <span id="selectedArea">{{ user.area }}</span></li>
         <li>今月のごみ捨て回数：</li>
-    </ul>
-    <a class="nav-link js-scroll-trigger" onclick="toggleDropdown()">地域変更</a>
+    </ul> -->
+    <button onclick="toggleDropdown()">地域変更</button>
 
     <div id="areaDropdown" style="display: none;">
         <form name="form" method="post">
@@ -51,8 +55,9 @@
     </div>
     
 
-    <a class="nav-link js-scroll-trigger" href="/account/email/">メールアドレス変更</a>
-    <a class="nav-link js-scroll-trigger" href="/account/logout/">ログアウト</a>
+    <!-- <a class="nav-link js-scroll-trigger" href="/account/email/">メールアドレス変更</a> -->
+    <br></br>
+    <a href="/account/logout/">ログアウト</a>
 </div>
 
 <script>
