@@ -4,6 +4,8 @@
 {% block head %}
 <!--カレンダーのcss-->
 <link rel="stylesheet" href="{% static 'css/calendar.css' %}" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
+
 {% endblock %}
 
 
@@ -15,10 +17,6 @@
       宇部市ごみ捨てガイド
       <span class="text-success">&nbsp;&nbsp;&nbsp;discard</span>
     </h2>
-
-    <p class="lead mt-5 mb-5">
-      宇部市のごみの捨て方が分からないという方向けのサービスになっています。
-    </p>
   </div>
 </div>
 <div class="container">
@@ -96,7 +94,6 @@
       {% endif %}
       
 
-
       <!--以下はカレンダーを表す-->
       <div class="wrapper">
         <!--xxxx年xx月を表示-->
@@ -142,7 +139,45 @@
             break;
         }
     }
+    // プルダウンの選択が変更されたときにonchangeイベントを発火させる
+    function triggerDropdownChange() {
+        var event = new Event('change');
+        dropdown.dispatchEvent(event);
+    }
 
+    // ページ読み込み時に、もし地区が選択されていれば、onchangeイベントを発火させる
+    window.onload = function() {
+        if (selectedArea !== '') {
+            triggerDropdownChange();
+        }
+    };
+
+    window.onload = function() {
+    var messages = [
+      "布団は月1回の燃やせるごみで捨てることができます",
+      "ペットボトルはキャップとラベルを外してリサイクル",
+      "電池は危険ごみです",
+      "紙製品は綺麗に分別してリサイクル"
+    ];
+
+    var lastNotification = localStorage.getItem('lastNotification');
+    var currentTime = new Date().getTime();
+
+    if (!lastNotification || currentTime - lastNotification >= 3600000) { // 3600000ミリ秒 = 1時間
+      var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+      Push.create("ごみ捨ての豆知識", {
+        body: randomMessage,
+        icon: 'casley_logo.png', // アイコン画像のパスを正しく設定してください
+        timeout: 8000,
+        onClick: function () {
+          window.focus(); 
+          this.close();
+        }
+      });
+      localStorage.setItem('lastNotification', currentTime);
+    }
+  };
 </script>
 <script src="{% static 'js/calendar.js' %}" type="text/javascript"></script>
 </div>
