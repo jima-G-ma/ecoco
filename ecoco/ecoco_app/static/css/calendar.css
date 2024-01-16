@@ -59,15 +59,27 @@ td.paper {
 }
 
 td.blueing {
-    background-color: rgb(200, 200, 255); /* プラスチック：淡い青色 */
+    background-color: rgb(200, 255, 200); /* プラスチック：淡い緑色 */
 }
 
 td.no_burning {
-    background-color: rgb(200, 255, 200); /* 燃やせないごみ：淡い緑色 */
+    background-color: rgb(200, 200, 255); /* 燃やせないごみ：淡い青色 */
 }
 
-td.mix {
-    background-color: rgb(255, 200, 255); /* 混合物：淡い紫色 */
+span.burning {
+    color: rgb(230, 11, 11); /* 燃えるごみ：赤色 */
+}
+
+span.paper {
+    color: rgb(250, 168, 46); /* 紙製品：黄色 */
+}
+
+span.blueing {
+    color: rgb(18, 233, 18); /* プラスチック：緑色 */
+}
+
+span.no_burning {
+    color: rgb(17, 17, 214); /* 燃やせないごみ：青色 */
 }
 
 /* ボタン */

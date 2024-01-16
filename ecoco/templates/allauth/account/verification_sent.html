@@ -5,15 +5,16 @@
 {% block main %}
 <div class="container">
     <h2 class="line text-center">
-        ログイン
-        <span class="subtitle">&nbsp;&nbsp;&nbsp;login</span>
+        新規登録
+        <span class="subtitle">&nbsp;&nbsp;&nbsp;signup</span>
     </h2>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-    <p>新規登録はこちら <a href="{% url 'account_signup' %}">Sign up</a></p>
+    <h3>
+        確認用のメールを送信しました！
+    </h3>
+
+    <p>メールの有効性が確認できるまでユーザー登録は完了となりません。</p>
+    <p>メールに記載されたリンクをクリックして、ユーザー登録を完了させてください。</p>
+
 </div>
 {% endblock %}
