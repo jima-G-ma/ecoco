@@ -163,14 +163,14 @@ function createProcess(year, month) {
           const googleCalendarLink = createGoogleCalendarLink(year, month, count2, '燃やせないごみの日');
           calendar2 += "<td class='no_burning'><a href='" + googleCalendarLink + "' target='_blank'>燃やせないごみ</a></td>";
           if (judgeMonth && judgeYear && count2 == today.getDate()){
-            todayInfo += "<span class='text-secondary'>" + "燃やせないごみ</span>の日です";
+            todayInfo += "<span class='no_burning'>" + "燃やせないごみ</span>の日です";
             remind_categoly += "燃やせないごみ";
           }
         } else {
           const googleCalendarLink = createGoogleCalendarLink(year, month, count2, '古紙・紙製容器包装の日');
           calendar2 += "<td class='paper'><a href='" + googleCalendarLink + "' target='_blank'>古紙・紙製容器包装</a></td>";
           if (judgeMonth && judgeYear && count2 == today.getDate()){
-            todayInfo += "<span class='text-success'>" + "古紙・紙製容器包装</span>の日です";
+            todayInfo += "<span class='paper'>" + "古紙・紙製容器包装</span>の日です";
             remind_categoly += "古紙・紙製容器包装";
 
           }
@@ -181,7 +181,7 @@ function createProcess(year, month) {
         const googleCalendarLink = createGoogleCalendarLink(year, month, count2, '燃えるごみの日');
         calendar2 += "<td class='burning'><a href='" + googleCalendarLink + "' target='_blank'>燃えるごみ</a></td>";
         if (judgeMonth && judgeYear && count2 == today.getDate()){
-          todayInfo += "<span class='text-danger'>" + "燃えるごみ</span>の日です";
+          todayInfo += "<span class='burning'>" + "燃えるごみ</span>の日です";
           remind_categoly += "燃えるごみ";
         }
         count2++;
@@ -189,7 +189,7 @@ function createProcess(year, month) {
         const googleCalendarLink = createGoogleCalendarLink(year, month, count2, 'プラごみの日');
         calendar2 += "<td class='blueing'><a href='" + googleCalendarLink + "' target='_blank'>プラごみ</a></td>";
         if (judgeMonth && judgeYear && count2 == today.getDate()){
-          todayInfo += "<span class='text-primary'>" + "プラごみ</span>の日です";
+          todayInfo += "<span class='blueing'>" + "プラごみ</span>の日です";
           remind_categoly += "プラごみ";
         }
 

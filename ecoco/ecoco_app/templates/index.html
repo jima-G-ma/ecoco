@@ -17,6 +17,7 @@
       宇部市ごみ捨てガイド
       <span class="text-success">&nbsp;&nbsp;&nbsp;discard</span>
     </h2>
+
   </div>
 </div>
 <div class="container">
@@ -144,7 +145,6 @@
         var event = new Event('change');
         dropdown.dispatchEvent(event);
     }
-
     // ページ読み込み時に、もし地区が選択されていれば、onchangeイベントを発火させる
     window.onload = function() {
         if (selectedArea !== '') {
