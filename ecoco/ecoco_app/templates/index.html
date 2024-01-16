@@ -16,9 +16,9 @@
       <span class="text-success">&nbsp;&nbsp;&nbsp;discard</span>
     </h2>
 
-    <p class="lead mt-5 mb-5">
+    <!-- <p class="lead mt-5 mb-5">
       宇部市のごみの捨て方が分からないという方向けのサービスになっています。
-    </p>
+    </p> -->
   </div>
 </div>
 <div class="container">
@@ -142,6 +142,18 @@
             break;
         }
     }
+
+    // プルダウンの選択が変更されたときにonchangeイベントを発火させる
+    function triggerDropdownChange() {
+        var event = new Event('change');
+        dropdown.dispatchEvent(event);
+    }
+    // ページ読み込み時に、もし地区が選択されていれば、onchangeイベントを発火させる
+    window.onload = function() {
+        if (selectedArea !== '') {
+            triggerDropdownChange();
+        }
+    };
 
 </script>
 <script src="{% static 'js/calendar.js' %}" type="text/javascript"></script>
