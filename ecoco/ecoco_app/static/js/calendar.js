@@ -208,11 +208,11 @@ function createProcess(year, month) {
 
 
 //ページ遷移した来た時に一度だけリロードする
-function rel() {
-  if (window.name != "any") {
-    location.reload();
-    window.name = "any";
-  } else {
-    window.name = "";
-  }
-}
+// function rel() {
+//   if (window.name != "any") {
+//     location.reload();
+//     window.name = "any";
+//   } else {
+//     window.name = "";
+//   }
+// }
