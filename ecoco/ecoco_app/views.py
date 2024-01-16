@@ -55,7 +55,3 @@ def bunbetsu(request):
 
   sepa = {"item": g_List}
   return render(request, "separation.html", sepa)
-<<<<<<< HEAD
-
-=======
->>>>>>> 3f419e021b5980b6de5c5c05bc0277b16592510d
